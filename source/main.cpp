@@ -7,11 +7,14 @@ using namespace std;
 int main(){
     BinarySearchTree Tree;
 
-    Tree.insert(3);
-    Tree.insert(4);
+    Tree.insert(5);
+    for(int i=1; i <= 10; i++){
+        if(i == 5) continue;
+        Tree.insert(i);
+    }
 
-    Tree.clear();
-    Tree.search(4);
+    Tree.search(7);
 
+    Tree.preOrder();
     return 0;
 }

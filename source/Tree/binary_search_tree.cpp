@@ -95,5 +95,6 @@ bool BinarySearchTree::rSearch(TreeEntry x, TreePointer &t)
     else if (x > t->entry)
         return rSearch(x, t->rightNode);
     else
+        cout << "Found: " << t -> entry << endl;
         return true;
 };

@@ -9,6 +9,10 @@ public:
 
     void clear();
 
+    void preOrder();
+    void inOrder();
+    void postOrder();
+
 protected:
     // declaração de tipos
     struct TreeNode;               
@@ -22,6 +26,10 @@ protected:
     };
 
     void rClear(TreePointer &t);
+
+    void rPreOrder(TreePointer &t);
+    void rInOrder(TreePointer &t);
+    void rPostOrder(TreePointer &t);
 
     // declaração de campos
     TreePointer root;

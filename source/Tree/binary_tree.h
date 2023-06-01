@@ -7,6 +7,8 @@ class BinaryTree
 public:
     BinaryTree();
 
+    void clear();
+
 protected:
     // declaração de tipos
     struct TreeNode;               
@@ -18,6 +20,8 @@ protected:
         TreePointer leftNode, rightNode; // subárvores
         int count;
     };
+
+    void rClear(TreePointer &t);
 
     // declaração de campos
     TreePointer root;

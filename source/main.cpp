@@ -10,7 +10,8 @@ int main(){
     Tree.insert(3);
     Tree.insert(4);
 
+    Tree.clear();
+    Tree.search(4);
 
-    
     return 0;
 }

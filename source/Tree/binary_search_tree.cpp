@@ -85,9 +85,11 @@ TreeEntry BinarySearchTree::rMaximus(TreePointer &t)
 
 bool BinarySearchTree::rSearch(TreeEntry x, TreePointer &t)
 {
-    if (t == NULL)
+    if (t == NULL){
+        cout << "Arvore Vazia" << endl;
         return false;
-
+    }
+        
     if (x < t->entry)
         return rSearch(x, t->leftNode);
     else if (x > t->entry)

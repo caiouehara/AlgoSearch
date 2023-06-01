@@ -1,13 +1,6 @@
-#include <iostream>
 #include "./binary_search_tree.h"
-
+#include <iostream>
 using namespace std;
-
-BinarySearchTree::BinarySearchTree()
-{
-    root = NULL;
-    cout << "Tree Created" << endl;
-};
 
 // max, min
 TreeEntry BinarySearchTree::minimun()
@@ -71,7 +64,7 @@ void BinarySearchTree::insert(TreeEntry x)
     else
         p->rightNode = r;
 
-    cout << "Inserted: " << r->entry << endl;
+    cout << "Inserted: " << r-> entry << endl;
 };
 
 TreeEntry BinarySearchTree::rMinimun(TreePointer &t)

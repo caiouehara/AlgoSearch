@@ -67,7 +67,8 @@ void BinarySearchTree::insert(TreeEntry x)
 
 void BinarySearchTree::insert(int array[], int size)
 {
-    for(int i=0; i<size;i++){
+    for (int i = 0; i < size; i++)
+    {
         insert(array[i]);
     }
 };
@@ -124,4 +125,49 @@ void BinarySearchTree::rSearchInsert(TreeEntry x, TreePointer &t)
         rSearchInsert(x, t->rightNode);
     else // x encontrado, atualizar contador
         t->count++;
+}
+
+bool BinarySearchTree::remove(TreeEntry x)
+{
+    return rRemove(x, root);
+};
+
+bool BinarySearchTree::rRemove(TreeEntry x, TreePointer &p)
+// entendi mais ou menos
+{
+    // search
+    if (p == NULL)
+        return false; // elemento inexistente
+    if (x < p->entry)
+        return rRemove(x, p->leftNode);
+    else if (x > p->entry)
+        return rRemove(x, p->rightNode);
+    else
+    // remover p->
+    {
+        TreePointer q;
+        q = p;
+
+        if (q->leftNode == NULL)
+            p = q->rightNode; // caso A
+        else if (q->rightNode == NULL)
+            p = q->leftNode; // caso B
+        else                 // caso C.1
+            removeMin(q, q->rightNode);
+        delete q;
+        return true; // elemento removido
+    }
+}
+
+void BinarySearchTree::removeMin(TreePointer &q, TreePointer &r)
+{
+    if (r->leftNode != NULL)
+        removeMin(q, r->leftNode);
+    else
+    {
+        q->entry = r->entry;
+        q->count = r->count; // somente necessário se busca com inserção
+        q = r;
+        r = r->rightNode;
+    }
 }

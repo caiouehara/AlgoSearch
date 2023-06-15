@@ -12,6 +12,8 @@
         bool search(TreeEntry x);
         void insert(TreeEntry x);
         void insert(TreeEntryArray array, int size);
+        //predecessor e sucessor
+        
 
     private:
         TreeEntry rMinimun(TreePointer &t);
@@ -19,6 +21,11 @@
 
         void rSearchInsert(TreeEntry x, TreePointer &t);
         bool rSearch(TreeEntry x, TreePointer &t);
+
+           
+        bool rRemove(TreeEntry x, TreePointer &p);
+        void removeMin(TreePointer &q, TreePointer &r);
+
     };
 
 #endif

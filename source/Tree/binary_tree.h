@@ -13,10 +13,13 @@ public:
     bool full();
     int nodes();
     int leaves();
+    int height();
 
     void preOrder(callback cb);
     void inOrder(callback cb);
     void postOrder(callback cb);
+    
+    void print();
 
 protected:
     // declaração de tipos
@@ -33,6 +36,8 @@ protected:
     void rClear(TreePointer &t);
     int rNodes(TreePointer &t);
     int rLeaves(TreePointer &t);
+    int rHeight(TreePointer &t);
+    void rPrint(TreePointer &t, int s);
 
     void rPreOrder(TreePointer &t, callback cb);
     void rInOrder(TreePointer &t, callback cb);

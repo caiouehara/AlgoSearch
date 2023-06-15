@@ -1,6 +1,7 @@
 #include "./binary_tree.h"
-#include <iostream>
+#include <iostream> 
 using namespace std;
+#include <iomanip>
 
 BinaryTree::BinaryTree()
 {
@@ -15,7 +16,7 @@ bool BinaryTree::empty()
 
 bool BinaryTree::full()
 {
-    //caso haja limite, deverá ser adicionado aqui
+    // caso haja limite, deverá ser adicionado aqui
     return false;
 }
 
@@ -26,28 +27,30 @@ int BinaryTree::nodes()
 
 int BinaryTree::rNodes(TreePointer &t)
 {
-    if(t == NULL){ 
+    if (t == NULL)
+    {
         return 0;
     }
-    else {
-        return 1 + rNodes(t -> leftNode) + rNodes(t -> rightNode);
+    else
+    {
+        return 1 + rNodes(t->leftNode) + rNodes(t->rightNode);
     }
 }
 
 int BinaryTree::leaves()
-{   
-    return rLeaves(root);;
+{
+    return rLeaves(root);
+    ;
 }
 
 int BinaryTree::rLeaves(TreePointer &t)
 {
-    if(t == NULL)
+    if (t == NULL)
         return 0;
+    else if (t->leftNode == NULL && t->rightNode == NULL)
+        return 1;
     else
-        if(t -> leftNode == NULL && t -> rightNode == NULL)
-            return 1;
-        else
-            return rLeaves(t -> leftNode) + rLeaves(t -> rightNode);
+        return rLeaves(t->leftNode) + rLeaves(t->rightNode);
 }
 
 void BinaryTree::clear()
@@ -59,12 +62,12 @@ void BinaryTree::clear()
 
 void BinaryTree::rClear(TreePointer &t)
 {
-    if( t != NULL){
-        rClear(t -> leftNode);
-        rClear(t -> rightNode);
+    if (t != NULL)
+    {
+        rClear(t->leftNode);
+        rClear(t->rightNode);
         delete t;
     }
-
 };
 
 void BinaryTree::preOrder(callback cb)
@@ -74,10 +77,11 @@ void BinaryTree::preOrder(callback cb)
 
 void BinaryTree::rPreOrder(TreePointer &t, callback cb)
 {
-    if(t != NULL){
-        cb(t -> entry);
-        rPreOrder(t -> leftNode, cb);
-        rPreOrder(t -> rightNode, cb);
+    if (t != NULL)
+    {
+        cb(t->entry);
+        rPreOrder(t->leftNode, cb);
+        rPreOrder(t->rightNode, cb);
     }
 };
 
@@ -88,10 +92,11 @@ void BinaryTree::inOrder(callback cb)
 
 void BinaryTree::rInOrder(TreePointer &t, callback cb)
 {
-    if(t != NULL){
-        rInOrder(t -> leftNode, cb);
-        cb(t -> entry);
-        rInOrder(t -> rightNode, cb);
+    if (t != NULL)
+    {
+        rInOrder(t->leftNode, cb);
+        cb(t->entry);
+        rInOrder(t->rightNode, cb);
     }
 };
 
@@ -102,10 +107,51 @@ void BinaryTree::postOrder(callback cb)
 
 void BinaryTree::rPostOrder(TreePointer &t, callback cb)
 {
-    if(t != NULL)
+    if (t != NULL)
     {
-        rPostOrder(t -> leftNode, cb);
-        rPostOrder(t -> rightNode, cb);
-        cb(t -> entry);
+        rPostOrder(t->leftNode, cb);
+        rPostOrder(t->rightNode, cb);
+        cb(t->entry);
     }
 };
+
+int BinaryTree::height()
+{
+    return rHeight(root);
+};
+
+int BinaryTree::rHeight(TreePointer &t)
+{
+    // não entendi
+    if (t == NULL)
+        return -1;
+    else
+    {
+        int L, R;
+        L = rHeight(t->leftNode);
+        R = rHeight(t->rightNode);
+        if (L > R)
+            return L + 1;
+        else
+            return R + 1;
+    }
+};
+
+void BinaryTree::print()
+{
+    rPrint(root, 0);
+}
+
+void BinaryTree::rPrint(TreePointer &t, int s)
+{
+    //não entendi
+    int i;
+    if (t != NULL)
+    {
+        rPrint(t->rightNode, s + 3); // escreve subárvore direita
+        for (i = 1; i <= s; i++)
+            cout << " ";                     // espaços
+        cout << setw(6) << t-> entry << endl; // escreve a raiz
+        rPrint(t->leftNode, s + 3);           // escreve subárvore esquerda
+    }
+}

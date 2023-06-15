@@ -18,5 +18,5 @@ int main()
     Tree.insert(5);
     Tree.insert(1);
 
-    Tree.postOrder(cb);
+    Tree.print();
 }

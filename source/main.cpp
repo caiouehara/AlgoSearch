@@ -11,12 +11,7 @@ void cb(TreeEntry x)
 int main()
 {
     BinarySearchTree Tree;
-
-    Tree.insert(2);
-    Tree.insert(3);
-    Tree.insert(4);
-    Tree.insert(5);
-    Tree.insert(1);
-
+    TreeEntryArray a = {2,4,5,6,10,123,124,12,31,13, 15, 230};
+    Tree.insert(a, 12);
     Tree.print();
 }

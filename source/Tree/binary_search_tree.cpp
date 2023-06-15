@@ -63,8 +63,13 @@ void BinarySearchTree::insert(TreeEntry x)
         p->leftNode = r;
     else
         p->rightNode = r;
+};
 
-    cout << "Inserted: " << r-> entry << endl;
+void BinarySearchTree::insert(int array[], int size)
+{
+    for(int i=0; i<size;i++){
+        insert(array[i]);
+    }
 };
 
 TreeEntry BinarySearchTree::rMinimun(TreePointer &t)
@@ -85,16 +90,38 @@ TreeEntry BinarySearchTree::rMaximus(TreePointer &t)
 
 bool BinarySearchTree::rSearch(TreeEntry x, TreePointer &t)
 {
-    if (t == NULL){
+    if (t == NULL)
+    {
         cout << "Arvore Vazia" << endl;
         return false;
     }
-        
+
     if (x < t->entry)
         return rSearch(x, t->leftNode);
     else if (x > t->entry)
         return rSearch(x, t->rightNode);
     else
-        cout << "Found: " << t -> entry << endl;
-        return true;
+        cout << "Found: " << t->entry << endl;
+    return true;
 };
+
+void BinarySearchTree::searchInsert(TreeEntry x)
+{
+    rSearchInsert(x, root);
+}
+void BinarySearchTree::rSearchInsert(TreeEntry x, TreePointer &t)
+{
+    if (t == NULL) // x não encontrado; inserir
+    {
+        t = new TreeNode;
+        t->entry = x;
+        t->count = 1; // primeira ocorrência de x
+        t->leftNode = t->rightNode = NULL;
+    }
+    else if (x < t->entry) // procurar x na subárvore esquerda
+        rSearchInsert(x, t->leftNode);
+    else if (x > t->entry) // procurar x na subárvore direita
+        rSearchInsert(x, t->rightNode);
+    else // x encontrado, atualizar contador
+        t->count++;
+}

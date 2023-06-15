@@ -3,6 +3,7 @@
 
 typedef int TreeEntry;  // tipo de dado colocado na árvore
 typedef void (*callback) (TreeEntry); 
+typedef TreeEntry TreeEntryArray[]; 
 class BinaryTree
 {
 public:

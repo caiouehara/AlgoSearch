@@ -3,18 +3,20 @@
 
 using namespace std;
 
+void cb(TreeEntry x)
+{
+    cout << x << ", ";
+};
 
-int main(){
+int main()
+{
     BinarySearchTree Tree;
 
+    Tree.insert(2);
+    Tree.insert(3);
+    Tree.insert(4);
     Tree.insert(5);
-    for(int i=1; i <= 10; i++){
-        if(i == 5) continue;
-        Tree.insert(i);
-    }
+    Tree.insert(1);
 
-    Tree.search(7);
-
-    Tree.preOrder();
-    return 0;
+    Tree.postOrder(cb);
 }

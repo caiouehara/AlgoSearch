@@ -29,9 +29,10 @@ protected:
 
     struct TreeNode
     {
-        TreeEntry entry;                      
+        TreeEntry entry;  //chave
         TreePointer leftNode, rightNode; // subárvores
-        int count;
+        int count; //frequência
+        int bal; //fator de balanceamento (-1,0,1)
     };
 
     void rClear(TreePointer &t);

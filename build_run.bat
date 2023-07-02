@@ -1,1 +1,1 @@
-g++ -o main.exe ./source/main.cpp ./source/Tree/binary_tree.cpp ./source/Tree/binary_search_tree.cpp && main.exe
+g++ -o main.exe ./source/main.cpp ./source/Tree/binary_tree.cpp ./source/Tree/binary_search_tree.cpp ./source/Tree/binary_search_tree_balanced.cpp && main.exe

@@ -1,9 +1,9 @@
-#ifndef avltree
-#define avltree
+#ifndef binaryavltree_h
+#define binaryavltree_h
 #include "./binary_search_tree.h"
 
 template <class TreeEntry>
-class AVLTree : public BinarySearchTree<TreeEntry>
+class BinaryAVLTree : public BinarySearchTree<TreeEntry>
 {
 
 public:

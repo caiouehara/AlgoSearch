@@ -5,9 +5,9 @@ using namespace std;
 
 int main()
 {
-    AVLTree<int> Tree;
+    BinaryAVLTree<int> avl;
     TreeEntryArray<int> a = {60,4,5,10,123,6,124,12,31,13, 15, 230};
-    Tree.insert(a, 12);
-    Tree.print();
+    avl.insert(a, 12);
+    avl.print();
 
 }

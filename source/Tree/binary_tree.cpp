@@ -1,7 +1,12 @@
 #include "./binary_tree.h"
 #include <iostream> 
-using namespace std;
 #include <iomanip>
+#include <fstream>
+#include <cstring>
+#include <set>
+#include <cmath>
+
+using namespace std;
 
 template <class TreeEntry>
 BinaryTree<TreeEntry>::BinaryTree()

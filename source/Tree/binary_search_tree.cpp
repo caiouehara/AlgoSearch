@@ -1,5 +1,11 @@
 #include "./binary_search_tree.h"
+
 #include <iostream>
+#include <fstream>
+#include <cstring>
+#include <set>
+#include <cmath>
+
 using namespace std;
 
 // max, min
@@ -188,6 +194,40 @@ void BinarySearchTree<TreeEntry>::removeMin(TreePointer &q, TreePointer &r)
         r = r->rightNode;
     }
 }
+
+template <class TreeEntry>
+int BinarySearchTree<TreeEntry>::countDistinctWords() {  
+    set<TreeEntry> distinctWords;                              // Conjunto para armazenar palavras distintas
+    rCountDistinctWords(root, distinctWords);           // Chama a função recursiva para preencher o conjunto
+    return distinctWords.size();                       // Retorna o tamanho do conjunto de palavras distintas
+}
+
+// Função recursiva para contar palavras distintas
+template <class TreeEntry>
+void BinarySearchTree<TreeEntry>::rCountDistinctWords(TreePointer &t, set<TreeEntry> &distinctWords) { 
+    if (t == NULL) {                                               // Se o nó for nulo, retorna
+        return;
+    }
+
+    distinctWords.insert(t -> entry);                 // Insere a palavra no conjunto de palavras distintas
+
+    rCountDistinctWords(t->leftNode , distinctWords);    // Recursivamente processa a subárvore esquerda
+    rCountDistinctWords(t->rightNode , distinctWords);   // Recursivamente processa a subárvore direita
+}
+
+template <class TreeEntry>
+int BinarySearchTree<TreeEntry>::alturaArvoreMinima() {           // Retorna a altura mínima da árvore
+    int n = countDistinctWords();                               // Número de palavras distintas na árvore
+    return rAlturaArvoreMinima(root, n);                         // Chama a função recursiva a partir da raiz da árvore com o número de palavras distintas
+}
+
+// Função recursiva para calcular a altura mínima da árvore
+template <class TreeEntry>
+int BinarySearchTree<TreeEntry>::rAlturaArvoreMinima(TreePointer &t, int n)  {  
+    int height = static_cast<int>(log2(n + 1)) - 1;                     // Conforme dado em aula de arvore binaria, pela fórmula log2(n+1) - 1 se calcula a altura mínima
+    return height;                                                      // Retorna a altura mínima da árvore
+}
+
 
 template class BinarySearchTree<int>;
 template class BinarySearchTree<string>;

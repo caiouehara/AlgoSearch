@@ -19,6 +19,7 @@ public:
     void preOrder(callback<TreeEntry> cb);
     void inOrder(callback<TreeEntry> cb);
     void postOrder(callback<TreeEntry> cb);
+
     
     void print();
 
@@ -48,6 +49,7 @@ private:
     void rPreOrder(TreePointer &t, callback<TreeEntry> cb);
     void rInOrder(TreePointer &t, callback<TreeEntry> cb);
     void rPostOrder(TreePointer &t, callback<TreeEntry> cb);
+
 };
 
 #endif

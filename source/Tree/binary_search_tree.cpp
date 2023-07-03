@@ -96,16 +96,20 @@ TreeEntry BinarySearchTree<TreeEntry>::rMaximus(TreePointer &t)
         rMaximus(t->rightNode);
 };
 
+//float count_F = 0; // Resultado item F - número de comparações de palavras na busca com inserção ABB - tipo float para gerar "media1" com  casas decimais (casting)
 template <class TreeEntry>
 bool BinarySearchTree<TreeEntry>::rSearch(TreeEntry x, TreePointer &t)
 {
+    //count_F += 2; // Artificio para contagem de comparações*** 
     if (t == NULL)
     {
+        //count_F-=2;                      // Não realiza nenhuma comparação (Saldo vide **  
         cout << "Arvore Vazia" << endl;
         return false;
     }
 
     if (x < t->entry)
+        //count_F--;
         return rSearch(x, t->leftNode);
     else if (x > t->entry)
         return rSearch(x, t->rightNode);

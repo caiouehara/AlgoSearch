@@ -175,5 +175,6 @@ void BinaryTree<TreeEntry>::rPrint(TreePointer &t, int s)
     }
 }
 
+
 template class BinaryTree<int>;
 template class BinaryTree<string>;

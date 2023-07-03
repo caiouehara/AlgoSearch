@@ -129,3 +129,4 @@ void BinaryAVLTree<TreeEntry>::rSearchInsert(TreeEntry x, TreePointer &pA, bool 
 }
 
 template class BinaryAVLTree<int>;
+template class BinarySearchTree<string>;

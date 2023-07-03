@@ -187,3 +187,4 @@ void BinarySearchTree<TreeEntry>::removeMin(TreePointer &q, TreePointer &r)
 }
 
 template class BinarySearchTree<int>;
+template class BinarySearchTree<string>;

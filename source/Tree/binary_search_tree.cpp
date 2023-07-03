@@ -3,7 +3,8 @@
 using namespace std;
 
 // max, min
-TreeEntry BinarySearchTree::minimun()
+template <class TreeEntry>
+TreeEntry BinarySearchTree<TreeEntry>::minimun()
 {
     if (root == NULL)
     {
@@ -13,7 +14,8 @@ TreeEntry BinarySearchTree::minimun()
     return rMinimun(root);
 };
 
-TreeEntry BinarySearchTree::maximum()
+template <class TreeEntry>
+TreeEntry BinarySearchTree<TreeEntry>::maximum()
 {
     if (root == NULL)
     {
@@ -24,12 +26,14 @@ TreeEntry BinarySearchTree::maximum()
 };
 
 // Remove, search, insert
-bool BinarySearchTree::search(TreeEntry x)
+template <class TreeEntry>
+bool BinarySearchTree<TreeEntry>::search(TreeEntry x)
 {
     return rSearch(x, root);
 };
 
-void BinarySearchTree::insert(TreeEntry x)
+template <class TreeEntry>
+void BinarySearchTree<TreeEntry>::insert(TreeEntry x)
 {
     TreePointer p = NULL, q = root, r;
 
@@ -65,7 +69,8 @@ void BinarySearchTree::insert(TreeEntry x)
         p->rightNode = r;
 };
 
-void BinarySearchTree::insert(int array[], int size)
+template <class TreeEntry>
+void BinarySearchTree<TreeEntry>::insert(TreeEntryArray<TreeEntry> array, int size)
 {
     for (int i = 0; i < size; i++)
     {
@@ -73,7 +78,8 @@ void BinarySearchTree::insert(int array[], int size)
     }
 };
 
-TreeEntry BinarySearchTree::rMinimun(TreePointer &t)
+template <class TreeEntry>
+TreeEntry BinarySearchTree<TreeEntry>::rMinimun(TreePointer &t)
 {
     if (t->leftNode == NULL)
         return t->entry;
@@ -81,7 +87,8 @@ TreeEntry BinarySearchTree::rMinimun(TreePointer &t)
         rMinimun(t->leftNode);
 };
 
-TreeEntry BinarySearchTree::rMaximus(TreePointer &t)
+template <class TreeEntry>
+TreeEntry BinarySearchTree<TreeEntry>::rMaximus(TreePointer &t)
 {
     if (t->rightNode == NULL)
         return t->entry;
@@ -89,7 +96,8 @@ TreeEntry BinarySearchTree::rMaximus(TreePointer &t)
         rMaximus(t->rightNode);
 };
 
-bool BinarySearchTree::rSearch(TreeEntry x, TreePointer &t)
+template <class TreeEntry>
+bool BinarySearchTree<TreeEntry>::rSearch(TreeEntry x, TreePointer &t)
 {
     if (t == NULL)
     {
@@ -106,11 +114,14 @@ bool BinarySearchTree::rSearch(TreeEntry x, TreePointer &t)
     return true;
 };
 
-void BinarySearchTree::searchInsert(TreeEntry x)
+template <class TreeEntry>
+void BinarySearchTree<TreeEntry>::searchInsert(TreeEntry x)
 {
     rSearchInsert(x, root);
 }
-void BinarySearchTree::rSearchInsert(TreeEntry x, TreePointer &t)
+
+template <class TreeEntry>
+void BinarySearchTree<TreeEntry>::rSearchInsert(TreeEntry x, TreePointer &t)
 {
     if (t == NULL) // x não encontrado; inserir
     {
@@ -127,12 +138,14 @@ void BinarySearchTree::rSearchInsert(TreeEntry x, TreePointer &t)
         t->count++;
 }
 
-bool BinarySearchTree::remove(TreeEntry x)
+template <class TreeEntry>
+bool BinarySearchTree<TreeEntry>::remove(TreeEntry x)
 {
     return rRemove(x, root);
 };
 
-bool BinarySearchTree::rRemove(TreeEntry x, TreePointer &p)
+template <class TreeEntry>
+bool BinarySearchTree<TreeEntry>::rRemove(TreeEntry x, TreePointer &p)
 // entendi mais ou menos
 {
     // search
@@ -159,7 +172,8 @@ bool BinarySearchTree::rRemove(TreeEntry x, TreePointer &p)
     }
 }
 
-void BinarySearchTree::removeMin(TreePointer &q, TreePointer &r)
+template <class TreeEntry>
+void BinarySearchTree<TreeEntry>::removeMin(TreePointer &q, TreePointer &r)
 {
     if (r->leftNode != NULL)
         removeMin(q, r->leftNode);
@@ -171,3 +185,5 @@ void BinarySearchTree::removeMin(TreePointer &q, TreePointer &r)
         r = r->rightNode;
     }
 }
+
+template class BinarySearchTree<int>;

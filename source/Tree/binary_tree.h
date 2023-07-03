@@ -1,10 +1,10 @@
 #ifndef binary_tree
 #define binary_tree
 
-typedef int TreeEntry;  // tipo de dado colocado na árvore
-typedef void (*callback) (TreeEntry); 
-typedef TreeEntry TreeEntryArray[]; 
-class BinaryTree
+template <class TreeEntry> using callback = void (*) (TreeEntry); 
+template <class TreeEntry> using TreeEntryArray = TreeEntry[]; 
+
+template <class TreeEntry> class BinaryTree
 {
 public:
     BinaryTree();
@@ -16,16 +16,16 @@ public:
     int leaves();
     int height();
 
-    void preOrder(callback cb);
-    void inOrder(callback cb);
-    void postOrder(callback cb);
+    void preOrder(callback<TreeEntry> cb);
+    void inOrder(callback<TreeEntry> cb);
+    void postOrder(callback<TreeEntry> cb);
     
     void print();
 
 protected:
     // declaração de tipos
     struct TreeNode;               
-    typedef TreeNode *TreePointer; // TreePointer é um ponteiro para estrutura TreeNode
+    typedef TreeNode* TreePointer; // TreePointer é um ponteiro para estrutura TreeNode
 
     struct TreeNode
     {
@@ -34,19 +34,20 @@ protected:
         int count; //frequência
         int bal; //fator de balanceamento (-1,0,1)
     };
+    
+    // declaração de campos
+    TreePointer root;
 
+private:
     void rClear(TreePointer &t);
     int rNodes(TreePointer &t);
     int rLeaves(TreePointer &t);
     int rHeight(TreePointer &t);
     void rPrint(TreePointer &t, int s);
 
-    void rPreOrder(TreePointer &t, callback cb);
-    void rInOrder(TreePointer &t, callback cb);
-    void rPostOrder(TreePointer &t, callback cb);
-
-    // declaração de campos
-    TreePointer root;
+    void rPreOrder(TreePointer &t, callback<TreeEntry> cb);
+    void rInOrder(TreePointer &t, callback<TreeEntry> cb);
+    void rPostOrder(TreePointer &t, callback<TreeEntry> cb);
 };
 
 #endif

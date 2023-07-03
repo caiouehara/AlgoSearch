@@ -2,23 +2,20 @@
 #define avltree
 #include "./binary_search_tree.h"
 
-class AVLTree: public BinarySearchTree
+template <class TreeEntry>
+class AVLTree : public BinarySearchTree<TreeEntry>
 {
 
-    public:
-        void searchInsert(TreeEntry x);
-        void searchInsert(TreeEntryArray x, int n);
+public:
+    void searchInsert(TreeEntry x);
+    void searchInsert(TreeEntryArray<TreeEntry> x, int n);
 
+private:
+    using typename BinarySearchTree<TreeEntry>::TreeNode;
+    using typename BinarySearchTree<TreeEntry>::TreePointer;
+    using BinarySearchTree<TreeEntry>::root;
 
-    private:
-        void rSearchInsert(TreeEntry x, TreePointer &pA, bool &h);
-
-
-
-
-
+    void rSearchInsert(TreeEntry x, TreePointer &pA, bool &h);
 };
-
-
 
 #endif

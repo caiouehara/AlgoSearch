@@ -2,13 +2,15 @@
 #include <iostream>
 using namespace std;
 
-void AVLTree::searchInsert(TreeEntry x)
+template <class TreeEntry>
+void AVLTree<TreeEntry>::searchInsert(TreeEntry x)
 {
     bool h = false;
     rSearchInsert(x, root, h);
 }
 
-void AVLTree::searchInsert(TreeEntryArray x, int n)
+template <class TreeEntry>
+void AVLTree<TreeEntry>::searchInsert(TreeEntryArray<TreeEntry> x, int n)
 {
     for (int i = 0; i < n; i++)
     {
@@ -16,7 +18,8 @@ void AVLTree::searchInsert(TreeEntryArray x, int n)
     }
 }
 
-void AVLTree::rSearchInsert(TreeEntry x, TreePointer &pA, bool &h)
+template <class TreeEntry>
+void AVLTree<TreeEntry>::rSearchInsert(TreeEntry x, TreePointer &pA, bool &h)
 {
 
     TreePointer pB, pC;
@@ -124,3 +127,5 @@ void AVLTree::rSearchInsert(TreeEntry x, TreePointer &pA, bool &h)
         }
     }
 }
+
+template class AVLTree<int>;

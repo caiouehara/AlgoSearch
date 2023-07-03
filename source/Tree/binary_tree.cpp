@@ -3,29 +3,34 @@
 using namespace std;
 #include <iomanip>
 
-BinaryTree::BinaryTree()
+template <class TreeEntry>
+BinaryTree<TreeEntry>::BinaryTree()
 {
     root = NULL;
     cout << "Tree created" << endl;
 };
 
-bool BinaryTree::empty()
+template <class TreeEntry>
+bool BinaryTree<TreeEntry>::empty()
 {
     return (root == NULL);
 }
 
-bool BinaryTree::full()
+template <class TreeEntry>
+bool BinaryTree<TreeEntry>::full()
 {
     // caso haja limite, deverá ser adicionado aqui
     return false;
 }
 
-int BinaryTree::nodes()
+template <class TreeEntry>
+int BinaryTree<TreeEntry>::nodes()
 {
     return rNodes(root);
 }
 
-int BinaryTree::rNodes(TreePointer &t)
+template <class TreeEntry>
+int BinaryTree<TreeEntry>::rNodes(TreePointer &t)
 {
     if (t == NULL)
     {
@@ -37,13 +42,15 @@ int BinaryTree::rNodes(TreePointer &t)
     }
 }
 
-int BinaryTree::leaves()
+template <class TreeEntry>
+int BinaryTree<TreeEntry>::leaves()
 {
     return rLeaves(root);
     ;
 }
 
-int BinaryTree::rLeaves(TreePointer &t)
+template <class TreeEntry>
+int BinaryTree<TreeEntry>::rLeaves(TreePointer &t)
 {
     if (t == NULL)
         return 0;
@@ -53,14 +60,16 @@ int BinaryTree::rLeaves(TreePointer &t)
         return rLeaves(t->leftNode) + rLeaves(t->rightNode);
 }
 
-void BinaryTree::clear()
+template <class TreeEntry>
+void BinaryTree<TreeEntry>::clear()
 {
     rClear(root);
     root = NULL;
     cout << "Tree deleted" << endl;
 };
 
-void BinaryTree::rClear(TreePointer &t)
+template <class TreeEntry>
+void BinaryTree<TreeEntry>::rClear(TreePointer &t)
 {
     if (t != NULL)
     {
@@ -70,12 +79,14 @@ void BinaryTree::rClear(TreePointer &t)
     }
 };
 
-void BinaryTree::preOrder(callback cb)
+template <class TreeEntry>
+void BinaryTree<TreeEntry>::preOrder(callback<TreeEntry> cb)
 {
     rPreOrder(root, cb);
 };
 
-void BinaryTree::rPreOrder(TreePointer &t, callback cb)
+template <class TreeEntry>
+void BinaryTree<TreeEntry>::rPreOrder(TreePointer &t, callback<TreeEntry> cb)
 {
     if (t != NULL)
     {
@@ -85,12 +96,14 @@ void BinaryTree::rPreOrder(TreePointer &t, callback cb)
     }
 };
 
-void BinaryTree::inOrder(callback cb)
+template <class TreeEntry>
+void BinaryTree<TreeEntry>::inOrder(callback<TreeEntry> cb)
 {
     rInOrder(root, cb);
 };
 
-void BinaryTree::rInOrder(TreePointer &t, callback cb)
+template <class TreeEntry>
+void BinaryTree<TreeEntry>::rInOrder(TreePointer &t, callback<TreeEntry> cb)
 {
     if (t != NULL)
     {
@@ -100,12 +113,14 @@ void BinaryTree::rInOrder(TreePointer &t, callback cb)
     }
 };
 
-void BinaryTree::postOrder(callback cb)
+template <class TreeEntry>
+void BinaryTree<TreeEntry>::postOrder(callback<TreeEntry> cb)
 {
     rPostOrder(root, cb);
 };
 
-void BinaryTree::rPostOrder(TreePointer &t, callback cb)
+template <class TreeEntry>
+void BinaryTree<TreeEntry>::rPostOrder(TreePointer &t, callback<TreeEntry> cb)
 {
     if (t != NULL)
     {
@@ -115,12 +130,14 @@ void BinaryTree::rPostOrder(TreePointer &t, callback cb)
     }
 };
 
-int BinaryTree::height()
+template <class TreeEntry>
+int BinaryTree<TreeEntry>::height()
 {
     return rHeight(root);
 };
 
-int BinaryTree::rHeight(TreePointer &t)
+template <class TreeEntry>
+int BinaryTree<TreeEntry>::rHeight(TreePointer &t)
 {
     // não entendi
     if (t == NULL)
@@ -137,12 +154,14 @@ int BinaryTree::rHeight(TreePointer &t)
     }
 };
 
-void BinaryTree::print()
+template <class TreeEntry>
+void BinaryTree<TreeEntry>::print()
 {
     rPrint(root, 0);
 }
 
-void BinaryTree::rPrint(TreePointer &t, int s)
+template <class TreeEntry>
+void BinaryTree<TreeEntry>::rPrint(TreePointer &t, int s)
 {
     //não entendi
     int i;
@@ -155,3 +174,5 @@ void BinaryTree::rPrint(TreePointer &t, int s)
         rPrint(t->leftNode, s + 3);           // escreve subárvore esquerda
     }
 }
+
+template class BinaryTree<int>;

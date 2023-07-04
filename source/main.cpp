@@ -50,10 +50,7 @@ int main()
     cout << "C) ALTURA DA ARVORE MINIMA: " << bst1.alturaArvoreMinima() << endl;
     cout << "D) ALTURA ABB: " << bst1.height() << endl;
     cout << "E) FOLHAS ABB: " << bst1.leaves() << endl;
-
-    // F) Comparações de palavras na busca com inserção ABB
-    // cout << "F) COMPARACOES DE PALAVRAS NA BUSCA COM INSERCAO ABB: " << count_F << endl;
-
+    cout << "F) COMPARACOES DE PALAVRAS NA BUSCA COM INSERCAO ABB: " << bst1.comparisonCount << endl;
     cout << "G) ALTURA AVL: " << avl1.height() << endl;
     cout << "H) FOLHAS AVL: " << avl1.leaves() << endl;
 

@@ -12,6 +12,14 @@
 
 using namespace std;
 
+template <class TreeEntry>
+BinarySearchTree<TreeEntry>::BinarySearchTree()
+{
+    root = NULL;
+    comparisonCount = 0;
+    cout << "ABB created" << endl;
+};
+
 // max, min
 template <class TreeEntry>
 TreeEntry BinarySearchTree<TreeEntry>::minimun()
@@ -106,20 +114,17 @@ TreeEntry BinarySearchTree<TreeEntry>::rMaximus(TreePointer &t)
         rMaximus(t->rightNode);
 };
 
-// float count_F = 0; // Resultado item F - número de comparações de palavras na busca com inserção ABB - tipo float para gerar "media1" com  casas decimais (casting)
 template <class TreeEntry>
 bool BinarySearchTree<TreeEntry>::rSearch(TreeEntry x, TreePointer &t)
 {
-    // count_F += 2; // Artificio para contagem de comparações***
+    
     if (t == NULL)
-    {
-        // count_F-=2;                      // Não realiza nenhuma comparação (Saldo vide **
+    {          
         cout << "Arvore Vazia" << endl;
         return false;
     }
 
     if (x < t->entry)
-        // count_F--;
         return rSearch(x, t->leftNode);
     else if (x > t->entry)
         return rSearch(x, t->rightNode);
@@ -143,10 +148,14 @@ void BinarySearchTree<TreeEntry>::rSearchInsert(TreeEntry x, TreePointer &t)
         t->count = 1; // primeira ocorrência de x
         t->leftNode = t->rightNode = NULL;
     }
-    else if (x < t->entry) // procurar x na subárvore esquerda
+    else if (x < t->entry) { // procurar x na subárvore esquerda
+        comparisonCount++;
         rSearchInsert(x, t->leftNode);
-    else if (x > t->entry) // procurar x na subárvore direita
+    }
+    else if (x > t->entry) { // procurar x na subárvore direita
+        comparisonCount++;
         rSearchInsert(x, t->rightNode);
+    }
     else // x encontrado, atualizar contador
         t->count++;
 }

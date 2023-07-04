@@ -23,8 +23,14 @@ protected:
     using typename BinaryTree<TreeEntry>::TreeNode;
     using typename BinaryTree<TreeEntry>::TreePointer; 
     using BinaryTree<TreeEntry>::root; 
+private:
+    unordered_map<string, TreePointer> wordMap; 
 
 public:
+    int comparisonCount;
+
+    BinarySearchTree();
+
     TreeEntry minimun();
     TreeEntry maximum();
 
@@ -43,8 +49,6 @@ public:
     vector<pair<string, int>> getTopFrequencies(int numWords);
 
 private:
-    unordered_map<string, TreePointer> wordMap; 
-
     TreeEntry rMinimun(TreePointer &t);
     TreeEntry rMaximus(TreePointer &t);
 

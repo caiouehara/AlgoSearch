@@ -7,6 +7,11 @@ class BinaryAVLTree : public BinarySearchTree<TreeEntry>
 {
 
 public:
+    int comparisonCount;
+    int rotationCount;
+
+    BinaryAVLTree();
+
     void searchInsert(TreeEntry x);
     void searchInsert(TreeEntryArray<TreeEntry> x, int n);
 

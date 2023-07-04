@@ -8,7 +8,6 @@ template <class TreeEntry>
 BinaryTree<TreeEntry>::BinaryTree()
 {
     root = NULL;
-    cout << "Tree created" << endl;
 };
 
 template <class TreeEntry>

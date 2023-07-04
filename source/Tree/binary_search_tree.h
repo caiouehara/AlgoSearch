@@ -62,8 +62,6 @@ private:
     int rAlturaArvoreMinima(TreePointer &t, int n);
     
     void rShowFrequency(TreePointer &t);
-    
-
 };
 
 #endif

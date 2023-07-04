@@ -10,6 +10,16 @@
 using namespace std;
 
 template <class TreeEntry>
+BinaryAVLTree<TreeEntry>::BinaryAVLTree()
+{
+    root = NULL;
+    comparisonCount = 0;
+    rotationCount = 0;
+    cout << "AVL created" << endl;
+};
+
+
+template <class TreeEntry>
 void BinaryAVLTree<TreeEntry>::searchInsert(TreeEntry x)
 {
     bool h = false;
@@ -44,6 +54,7 @@ void BinaryAVLTree<TreeEntry>::rSearchInsert(TreeEntry x, TreePointer &pA, bool 
 
     else if (x < pA->entry)
     {
+        comparisonCount++;
         rSearchInsert(x, pA->leftNode, h);
         if (h) // subárvore esquerda cresceu
         {
@@ -60,6 +71,7 @@ void BinaryAVLTree<TreeEntry>::rSearchInsert(TreeEntry x, TreePointer &pA, bool 
                 pB = pA->leftNode;
                 if (pB->bal == +1) // rotação LL
                 {
+                    rotationCount++;
                     pA->leftNode = pB->rightNode;
                     pB->rightNode = pA;
                     pA->bal = 0;
@@ -67,6 +79,7 @@ void BinaryAVLTree<TreeEntry>::rSearchInsert(TreeEntry x, TreePointer &pA, bool 
                 }
                 else // rotação LR
                 {
+                    rotationCount++;
                     pC = pB->rightNode;
                     pB->rightNode = pC->leftNode;
                     pC->leftNode = pB;
@@ -93,6 +106,7 @@ void BinaryAVLTree<TreeEntry>::rSearchInsert(TreeEntry x, TreePointer &pA, bool 
     {
         if (x > pA->entry)
         {
+            comparisonCount++;
             rSearchInsert(x, pA->rightNode, h);
 
             if (h) // subárvore direita cresceu
@@ -110,6 +124,7 @@ void BinaryAVLTree<TreeEntry>::rSearchInsert(TreeEntry x, TreePointer &pA, bool 
                     pB = pA->rightNode;
                     if (pB->bal == -1) // rotação RR
                     {
+                        rotationCount++;
                         pA->rightNode = pB->leftNode;
                         pB->leftNode = pA;
                         pA->bal = 0;
@@ -117,6 +132,7 @@ void BinaryAVLTree<TreeEntry>::rSearchInsert(TreeEntry x, TreePointer &pA, bool 
                     }
                     else // rotação RL
                     {
+                        rotationCount++;
                         pC = pB->leftNode;
                         pB->leftNode = pC->rightNode;
                         pC->rightNode = pB;

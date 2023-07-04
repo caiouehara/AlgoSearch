@@ -1,5 +1,12 @@
 #include "./binary_search_tree_balanced.h"
+
 #include <iostream>
+#include <iostream>
+#include <fstream>
+#include <cstring>
+#include <set>
+#include <cmath>
+
 using namespace std;
 
 template <class TreeEntry>
@@ -128,5 +135,4 @@ void BinaryAVLTree<TreeEntry>::rSearchInsert(TreeEntry x, TreePointer &pA, bool 
     }
 }
 
-template class BinaryAVLTree<int>;
 template class BinaryAVLTree<string>;

@@ -1,10 +1,6 @@
 #include "./binary_tree.h"
 #include <iostream> 
 #include <iomanip>
-#include <fstream>
-#include <cstring>
-#include <set>
-#include <cmath>
 
 using namespace std;
 
@@ -181,5 +177,4 @@ void BinaryTree<TreeEntry>::rPrint(TreePointer &t, int s)
 }
 
 
-template class BinaryTree<int>;
 template class BinaryTree<string>;

@@ -5,6 +5,10 @@
 #include <cstring>
 #include <set>
 #include <cmath>
+#include <vector>        // Biblioteca para uso de vetores
+#include <algorithm>     // Biblioteca para uso de algoritmos como sort
+#include <unordered_map> // Biblioteca para uso de mapas não ordenados
+#include <typeinfo>
 
 using namespace std;
 
@@ -102,20 +106,20 @@ TreeEntry BinarySearchTree<TreeEntry>::rMaximus(TreePointer &t)
         rMaximus(t->rightNode);
 };
 
-//float count_F = 0; // Resultado item F - número de comparações de palavras na busca com inserção ABB - tipo float para gerar "media1" com  casas decimais (casting)
+// float count_F = 0; // Resultado item F - número de comparações de palavras na busca com inserção ABB - tipo float para gerar "media1" com  casas decimais (casting)
 template <class TreeEntry>
 bool BinarySearchTree<TreeEntry>::rSearch(TreeEntry x, TreePointer &t)
 {
-    //count_F += 2; // Artificio para contagem de comparações*** 
+    // count_F += 2; // Artificio para contagem de comparações***
     if (t == NULL)
     {
-        //count_F-=2;                      // Não realiza nenhuma comparação (Saldo vide **  
+        // count_F-=2;                      // Não realiza nenhuma comparação (Saldo vide **
         cout << "Arvore Vazia" << endl;
         return false;
     }
 
     if (x < t->entry)
-        //count_F--;
+        // count_F--;
         return rSearch(x, t->leftNode);
     else if (x > t->entry)
         return rSearch(x, t->rightNode);
@@ -196,38 +200,41 @@ void BinarySearchTree<TreeEntry>::removeMin(TreePointer &q, TreePointer &r)
 }
 
 template <class TreeEntry>
-int BinarySearchTree<TreeEntry>::countDistinctWords() {  
-    set<TreeEntry> distinctWords;                              // Conjunto para armazenar palavras distintas
-    rCountDistinctWords(root, distinctWords);           // Chama a função recursiva para preencher o conjunto
-    return distinctWords.size();                       // Retorna o tamanho do conjunto de palavras distintas
+int BinarySearchTree<TreeEntry>::countDistinctWords()
+{
+    set<TreeEntry> distinctWords;             // Conjunto para armazenar palavras distintas
+    rCountDistinctWords(root, distinctWords); // Chama a função recursiva para preencher o conjunto
+    return distinctWords.size();              // Retorna o tamanho do conjunto de palavras distintas
 }
 
 // Função recursiva para contar palavras distintas
 template <class TreeEntry>
-void BinarySearchTree<TreeEntry>::rCountDistinctWords(TreePointer &t, set<TreeEntry> &distinctWords) { 
-    if (t == NULL) {                                               // Se o nó for nulo, retorna
+void BinarySearchTree<TreeEntry>::rCountDistinctWords(TreePointer &t, set<TreeEntry> &distinctWords)
+{
+    if (t == NULL)
+    { // Se o nó for nulo, retorna
         return;
     }
 
-    distinctWords.insert(t -> entry);                 // Insere a palavra no conjunto de palavras distintas
+    distinctWords.insert(t->entry); // Insere a palavra no conjunto de palavras distintas
 
-    rCountDistinctWords(t->leftNode , distinctWords);    // Recursivamente processa a subárvore esquerda
-    rCountDistinctWords(t->rightNode , distinctWords);   // Recursivamente processa a subárvore direita
+    rCountDistinctWords(t->leftNode, distinctWords);  // Recursivamente processa a subárvore esquerda
+    rCountDistinctWords(t->rightNode, distinctWords); // Recursivamente processa a subárvore direita
 }
 
 template <class TreeEntry>
-int BinarySearchTree<TreeEntry>::alturaArvoreMinima() {           // Retorna a altura mínima da árvore
-    int n = countDistinctWords();                               // Número de palavras distintas na árvore
-    return rAlturaArvoreMinima(root, n);                         // Chama a função recursiva a partir da raiz da árvore com o número de palavras distintas
+int BinarySearchTree<TreeEntry>::alturaArvoreMinima()
+{                                        // Retorna a altura mínima da árvore
+    int n = countDistinctWords();        // Número de palavras distintas na árvore
+    return rAlturaArvoreMinima(root, n); // Chama a função recursiva a partir da raiz da árvore com o número de palavras distintas
 }
 
 // Função recursiva para calcular a altura mínima da árvore
 template <class TreeEntry>
-int BinarySearchTree<TreeEntry>::rAlturaArvoreMinima(TreePointer &t, int n)  {  
-    int height = static_cast<int>(log2(n + 1)) - 1;                     // Conforme dado em aula de arvore binaria, pela fórmula log2(n+1) - 1 se calcula a altura mínima
-    return height;                                                      // Retorna a altura mínima da árvore
+int BinarySearchTree<TreeEntry>::rAlturaArvoreMinima(TreePointer &t, int n)
+{
+    int height = static_cast<int>(log2(n + 1)) - 1; // Conforme dado em aula de arvore binaria, pela fórmula log2(n+1) - 1 se calcula a altura mínima
+    return height;                                  // Retorna a altura mínima da árvore
 }
 
-
-template class BinarySearchTree<int>;
 template class BinarySearchTree<string>;

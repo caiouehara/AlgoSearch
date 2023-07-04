@@ -6,12 +6,24 @@
 #include <cstring>
 #include <set>
 #include <cmath>
+#include <iostream>         // Biblioteca para entrada/saída padrão
+#include <fstream>          // Biblioteca para leitura/escrita de arquivos
+#include <sstream>          // Biblioteca para manipulação de fluxos de strings
+#include <string>           // Biblioteca para manipulação de strings
+#include <vector>           // Biblioteca para uso de vetores
+#include <algorithm>        // Biblioteca para uso de algoritmos como sort
+#include <unordered_map>    // Biblioteca para uso de mapas não ordenados
 
 using namespace std;
 
 template <class TreeEntry>
 class BinarySearchTree : public BinaryTree<TreeEntry>
 {
+protected:
+    using typename BinaryTree<TreeEntry>::TreeNode;
+    using typename BinaryTree<TreeEntry>::TreePointer; 
+    using BinaryTree<TreeEntry>::root; 
+
 public:
     TreeEntry minimun();
     TreeEntry maximum();
@@ -26,12 +38,13 @@ public:
     int countDistinctWords();
     int alturaArvoreMinima();
 
-protected:
-    using typename BinaryTree<TreeEntry>::TreeNode;
-    using typename BinaryTree<TreeEntry>::TreePointer; 
-    using BinaryTree<TreeEntry>::root; 
-    
-private:    
+    void showFrequency();
+
+    vector<pair<string, int>> getTopFrequencies(int numWords);
+
+private:
+    unordered_map<string, TreePointer> wordMap; 
+
     TreeEntry rMinimun(TreePointer &t);
     TreeEntry rMaximus(TreePointer &t);
 
@@ -44,6 +57,9 @@ private:
     void rCountDistinctWords(TreePointer &t, set<TreeEntry> &distinctWords);
     int rAlturaArvoreMinima(TreePointer &t, int n);
     
+    void rShowFrequency(TreePointer &t);
+    
+
 };
 
 #endif

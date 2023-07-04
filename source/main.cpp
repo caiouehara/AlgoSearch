@@ -73,22 +73,15 @@ int main()
 
     cout << "----------- Palavras mais frequentes ---------- " << endl;
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    bst1.showFrequency();
+    vector<pair<string, int>> topFrequencies = bst1.getTopFrequencies(10);
+    cout << endl << "Palavras mais frequentes:" << endl;
+    int i = 0;
+    for (const auto& pair : topFrequencies) {
+        i++;
+        cout << i <<") " <<  pair.first << ": " << pair.second << " ocorrencias" << endl;
+    }
+    cout << endl;
 
     //arquivo: exame_10000-na-np-lo
     //Declaração da estrutura
@@ -141,14 +134,15 @@ int main()
     //     << endl;
 
     cout << "----------- Palavras mais frequentes ---------- " << endl;
-    
-
-   
-
-
-
-
-
+    bst2.showFrequency();
+    topFrequencies = bst2.getTopFrequencies(10);
+    cout << endl << "Palavras mais frequentes:" << endl;
+    i = 0;
+    for (const auto& pair : topFrequencies) {
+        i++;
+        cout << i <<") " <<  pair.first << ": " << pair.second << " ocorrencias" << endl;
+    }
+    cout << endl;    
 
     //arquivo: biblia-na-np-lo
     //Declaração da estrutura
@@ -202,10 +196,15 @@ int main()
 
     cout << "----------- Palavras mais frequentes ---------- " << endl;
     
-
-
-
-
+    bst3.showFrequency();
+    topFrequencies = bst3.getTopFrequencies(10);
+    cout << endl << "Palavras mais frequentes:" << endl;
+   i = 0;
+    for (const auto& pair : topFrequencies) {
+        i++;
+        cout << i <<") " <<  pair.first << ": " << pair.second << " ocorrencias" << endl;
+    }
+    cout << endl;    
 
     return 0;
 }

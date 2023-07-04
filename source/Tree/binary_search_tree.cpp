@@ -237,4 +237,44 @@ int BinarySearchTree<TreeEntry>::rAlturaArvoreMinima(TreePointer &t, int n)
     return height;                                  // Retorna a altura mínima da árvore
 }
 
+template <class TreeEntry>
+void BinarySearchTree<TreeEntry>::showFrequency()
+{
+    rShowFrequency(root);
+};
+
+template <class TreeEntry>
+void BinarySearchTree<TreeEntry>::rShowFrequency(TreePointer &t)
+{
+    if (t != NULL)
+    {
+        rShowFrequency(t->leftNode);
+        wordMap[t->entry] = t;
+        rShowFrequency(t->rightNode);
+    }
+};
+
+template <class TreeEntry>
+vector<pair<string, int>> BinarySearchTree<TreeEntry>::getTopFrequencies(int numWords) 
+{                                          // Obtém as n palavras mais frequentes
+    vector<pair<string, int>> frequencies; // Vetor para armazenar as frequências
+    for (const auto &pair : wordMap)
+    {                                                                     // Percorre o mapa de palavras
+        frequencies.push_back(make_pair(pair.first, pair.second->count)); // Adiciona a palavra e a contagem ao vetor
+    }
+
+    // Ordena o vetor com base na contagem em ordem decrescente
+    sort(frequencies.begin(), frequencies.end(), [](const pair<string, int> &a, const pair<string, int> &b)
+         {
+            if (a.second != b.second) {
+                return a.second > b.second;
+            }
+            return a.first < b.first; });
+    if (frequencies.size() > numWords)
+    { // Reduz o tamanho do vetor para n elementos
+        frequencies.resize(numWords);
+    }
+    return frequencies; // Retorna as palavras mais frequentes
+}
+
 template class BinarySearchTree<string>;

@@ -41,6 +41,8 @@ void BinaryAVLTree<TreeEntry>::rSearchInsert(TreeEntry x, TreePointer &pA, bool 
 
     TreePointer pB, pC;
 
+    comparisonCount += 2;
+
     //Caso nulo
     if (pA == NULL)
     {
@@ -50,11 +52,13 @@ void BinaryAVLTree<TreeEntry>::rSearchInsert(TreeEntry x, TreePointer &pA, bool 
         pA->count = 1;
         pA->leftNode = pA->rightNode = NULL;
         pA->bal = 0;
+
+        comparisonCount -= 2;
     }
 
     else if (x < pA->entry)
     {
-        comparisonCount++;
+        comparisonCount--;
         rSearchInsert(x, pA->leftNode, h);
         if (h) // subárvore esquerda cresceu
         {
@@ -106,7 +110,6 @@ void BinaryAVLTree<TreeEntry>::rSearchInsert(TreeEntry x, TreePointer &pA, bool 
     {
         if (x > pA->entry)
         {
-            comparisonCount++;
             rSearchInsert(x, pA->rightNode, h);
 
             if (h) // subárvore direita cresceu

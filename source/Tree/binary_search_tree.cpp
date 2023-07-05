@@ -141,19 +141,20 @@ void BinarySearchTree<TreeEntry>::searchInsert(TreeEntry x)
 template <class TreeEntry>
 void BinarySearchTree<TreeEntry>::rSearchInsert(TreeEntry x, TreePointer &t)
 {
+    comparisonCount += 2;
     if (t == NULL) // x não encontrado; inserir
     {
         t = new TreeNode;
         t->entry = x;
         t->count = 1; // primeira ocorrência de x
         t->leftNode = t->rightNode = NULL;
+        comparisonCount -= 2;
     }
     else if (x < t->entry) { // procurar x na subárvore esquerda
-        comparisonCount++;
+        comparisonCount--;
         rSearchInsert(x, t->leftNode);
     }
     else if (x > t->entry) { // procurar x na subárvore direita
-        comparisonCount++;
         rSearchInsert(x, t->rightNode);
     }
     else // x encontrado, atualizar contador
